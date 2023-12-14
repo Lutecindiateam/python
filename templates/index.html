@@ -1,0 +1,65 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Face Recognition</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Face Recognition</h1>-->
+
+<!--    <h2>Register New User</h2>-->
+<!--    <form method="POST" action="/register">-->
+<!--        <label for="user_id">User ID:</label>-->
+<!--        <input type="text" id="user_id" name="user_id" required><br><br>-->
+
+<!--        <label for="user_name">User Name:</label>-->
+<!--        <input type="text" id="user_name" name="user_name" required><br><br>-->
+
+<!--        <input type="submit" value="Register">-->
+<!--    </form>-->
+
+<!--    <h2>Recognize Faces</h2>-->
+<!--    <form method="POST" action="/recognize">-->
+<!--        <input type="submit" value="Recognize">-->
+<!--    </form>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Registration</title>
+</head>
+<body>
+    <h1>Face Registration</h1>
+    <p>Click the button to register your face:</p>
+    <button id="registerButton">Register Face</button>
+    <p id="feedback"></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const registerButton = document.getElementById('registerButton');
+            const feedback = document.getElementById('feedback');
+
+            registerButton.addEventListener('click', function () {
+                // Send a POST request to the server when the button is clicked
+                fetch('/register', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Display the feedback message from the server
+                    feedback.textContent = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    feedback.textContent = 'An error occurred while registering.';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

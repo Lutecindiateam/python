@@ -1,0 +1,282 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--    <head>-->
+<!--        <meta charset="utf-8">-->
+<!--        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--        <title>Attendance Tracker Sheet</title>-->
+<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--        <style>-->
+<!--            body {-->
+<!--                font-family: Arial, sans-serif;-->
+<!--                background-color: #f4f4f4;-->
+<!--            }-->
+<!--            form {-->
+<!--                margin-top: 50px;-->
+<!--                display: flex;-->
+<!--                flex-direction: column;-->
+<!--                align-items: center;-->
+<!--                border: 1px solid #ddd;-->
+<!--                padding: 20px;-->
+<!--                border-radius: 5px;-->
+<!--                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);-->
+<!--                background-color: #fff;-->
+<!--                width: 50%;-->
+<!--                margin-left: auto;-->
+<!--                margin-right: auto;-->
+<!--            }-->
+<!--            label {-->
+<!--                font-size: 20px;-->
+<!--                margin-bottom: 10px;-->
+<!--                color: #333;-->
+<!--            }-->
+<!--            input[type="date"] {-->
+<!--                padding: 10px 20px;-->
+<!--                border-radius: 5px;-->
+<!--                border: none;-->
+<!--                margin-bottom: 20px;-->
+<!--                font-size: 18px;-->
+<!--                width: 100%;-->
+<!--                box-sizing: border-box;-->
+<!--                margin-top: 10px;-->
+<!--                margin-bottom: 20px;-->
+<!--            }-->
+<!--            button[type="submit"] {-->
+<!--                background-color: #333;-->
+<!--                color: #fff;-->
+<!--                border: none;-->
+<!--                padding: 10px;-->
+<!--                border-radius: 5px;-->
+<!--                cursor: pointer;-->
+<!--                font-size: 18px;-->
+<!--            }-->
+<!--            button[type="submit"]:hover {-->
+<!--                background-color: #555;-->
+<!--            }-->
+<!--        </style>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <div class="jumbotron text-center">-->
+<!--            <h1 class="display-4">Attendance Tracker Sheet</h1>-->
+<!--        </div>-->
+<!--        <hr>-->
+
+<!--        <form action="/attendance" method="POST" id="attn-form">-->
+<!--            <label for="selected_date">Select Date: </label>-->
+<!--            <input type="date" id="selected_date" name="selected_date" required value="{{ selected_date }}">-->
+<!--            <button type="submit" class="btn btn-outline-success">Show attendance</button>-->
+<!--        </form>-->
+
+<!--    <div class="container mt-5">-->
+<!--        {% if no_data %}-->
+<!--        <div class="alert alert-warning" role="alert">-->
+<!--            No attendance data available for the selected date.-->
+<!--        </div>-->
+<!--        {% endif %}-->
+
+<!--        <h2>Attendance Data Table</h2>-->
+<!--        <table class="table">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">Name</th>-->
+<!--                    <th scope="col">Time</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for name, time in attendance_data %}-->
+<!--                <tr>-->
+<!--                    <td>{{ name }}</td>-->
+<!--                    <td>{{ time }}</td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+
+<!doctype html>
+<html lang="en">
+<style type='text/css'>
+* {
+padding: 0;
+margin: 0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+background-image: url('https://cutewallpaper.org/21/1920-x-1080-gif/1920x1080-Wallpapercartoon-Wallpapers-Driverlayer-Search-.gif');
+background-size: cover;
+font-family: sans-serif;
+margin-top: 40px;
+height: 100vh;
+padding: 0;
+margin: 0;
+}
+table {
+border: 1px;
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 86%;
+margin: auto;
+}
+td,
+th {
+border: 1px solid black !important;
+padding: 5px;
+}
+tr:nth-child(even) {
+background-color: #dddddd;
+}
+</style>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+
+
+</head>
+
+
+<body>
+ <div class="row text-center" style="padding: 20px; margin: 20px;">
+        <div class="col"
+            style="border-radius: 20px; padding: 0px; background-color: rgb(211,211,211,0.5); margin: 0px 10px 10px 10px; height: 400px;">
+            <form action="/add" method="POST" enctype="multipart/form-data">
+                <h2 style="border-radius: 20px 20px 0px 0px; background-color: #0b4c61; color: white; padding: 10px;">Add
+                    New User <i class="material-icons">control_point_duplicate</i></h2>
+
+                <br>
+   <label style="font-size: 20px;"><b>Enter New User Name*</b></label>
+<br>
+<input type="text" id="newusername" name="newusername" style="font-size: 16px; margin-top: 10px; margin-bottom: 10px; width: 300px;" required>
+<br>
+<label style="font-size: 20px;"><b>Enter New User Id*</b></label>
+<br>
+<input type="number" id="newusereid" name="newuserid" style="font-size: 16px; margin-top: 10px; margin-bottom: 10px; width: 300px;" required>
+<br>
+<button style="width: 232px; margin-top: 20px; font-size: 18px;" type="submit" class="btn btn-dark">Add New User</button>
+
+                <br>
+
+            </form>
+        </div>
+    </div>
+
+ <div class="row text-center" style="padding: 20px; margin: 20px;">
+
+        <div class="col"
+            style="border-radius: 20px; padding: 0px; background-color: rgb(211,211,211,0.5); margin: 0px 10px 10px 10px; min-height: 400px;">
+            <h2 style="border-radius: 20px 20px 0px 0px; background-color: #0b4c61; color: white; padding: 10px;">Today's
+                Attendance <i class="material-icons">assignment</i></h2>
+            <a style="text-decoration: none; max-width: 300px;" href="/start">
+<!--                <button style="font-size: 24px; font-weight: bold; border-radius: 10px; width: 490px; padding: 10px; margin-top: 30px; margin-bottom: 30px;"-->
+<!--                    type="submit" class="btn btn-primary">Take Attendance <i class="material-icons">beenhere</i></button>-->
+<!--                <button style="font-size: 24px; font-weight: bold; border-radius: 10px; width: 600px; padding: 15px; margin-top: 30px; margin-bottom: 30px;" type="submit" class="btn btn-primary">Take Attendance <i class="material-icons">beenhere</i></button>-->
+                <button style="font-size: 24px; font-weight: bold; border-radius: 10px; width: 600px; padding: 15px; margin-top: 30px; margin-bottom: 30px;" type="button" class="btn btn-primary" onclick="getLocation()">Take Attendance <i class="material-icons">beenhere</i></button>
+
+            </a>
+
+            <table style="background-color: white;">
+                <tr>
+<!--        <th>S No</th>-->
+        <th>Name</th>
+        <th>ID</th>
+        <th>In Time</th>
+        <th>Out Time</th>
+        <th>Date</th>
+        <th>Work Hour</th>
+        <th>Overtime</th>
+        <th>Late Time</th>
+        <th>Early Out Time</th>
+        <th>In Location</th>
+        <th>Out  Location</th>
+
+
+                </tr>
+                {% if l %}
+                {% for i in range(l) %}
+                <tr>
+<!--             <td>{{ i+1 }}</td>-->
+             <td>{{ names[i] }}</td>
+             <td>{{ rolls[i] }}</td>
+             <td>{{ times[i] }}</td>
+             <td>{{ out_times[i] }}</td>
+                    <td>{{ dates[i] }}</td>
+             <td>{{ works[i] }}</td>
+             <td>{{ overtimes[i] }}</td>
+             <td>{{ late_times[i] }}</td>
+             <td>{{ early_out_times[i] }}</td>
+              <td>
+                {{ in_locations[i] }}
+            </td>
+             <td>{{ out_locations[i] }}</td>
+
+
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+ </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New User</title>
+    <!-- Include any CSS styles you need -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Add New User</h1>
+    <button id="addUserButton" onclick="executeScript()">Add New User</button>
+      <h1>Run Python Script</h1>
+    <form method="POST" action="/run_main">
+        <button type="submit">Run Python Script</button>
+    </form>
+    <script>
+        function executeScript() {
+            // Send an AJAX request to trigger script execution
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/run_main', true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Script execution started, you can add additional logic here if needed
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
+

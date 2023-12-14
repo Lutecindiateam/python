@@ -1,0 +1,262 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Event Report</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--     <style>-->
+<!--        /* Basic styles for the container */-->
+<!--        .event-container {-->
+<!--          border: 1px solid #ccc;-->
+<!--          padding: 20px;-->
+<!--          border-radius: 5px;-->
+<!--          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);-->
+<!--          background-color: #f9f9f9;-->
+<!--          text-align: center;-->
+<!--          max-width: 100%;-->
+<!--        }-->
+
+<!--        .event-name {-->
+<!--          font-size: 1.5rem;-->
+<!--          margin-bottom: 10px;-->
+<!--          color: #333;-->
+<!--        }-->
+
+<!--        .num-people {-->
+<!--          font-size: 1rem;-->
+<!--          margin-bottom: 15px;-->
+<!--          color: #777;-->
+<!--        }-->
+
+<!--        .view-photos-button {-->
+<!--         padding: 8px 16px;-->
+<!--         background-color: #007bff;-->
+<!--         color: #fff;-->
+<!--         display: flex;-->
+<!--         justify-content: center;-->
+<!--         align-items: center;-->
+<!--         transition: background-color 0.3s ease;-->
+<!--         margin: 0 auto;-->
+<!--         margin-top: 15px;-->
+<!--         cursor: pointer;-->
+<!--         border: none;-->
+<!--         border-radius: 5px;-->
+<!--        }-->
+
+<!--        .view-photos-button:hover {-->
+<!--         background-color: #0056b3;-->
+<!--        }-->
+
+
+<!--        .photo-thumbnail {-->
+<!--          width: 150px;-->
+<!--          height: 150px;-->
+<!--          margin: 5px;-->
+<!--          object-fit: cover;-->
+<!--          border: 1px solid #ddd;-->
+<!--          border-radius: 5px;-->
+<!--        }-->
+<!--     </style>-->
+
+
+<!--        <div class="event-container">-->
+<!--          <div class="event-name">Birthday</div>-->
+<!--            <div class="num-people" id="num-people">Number of People: {{ total_unique_faces }}</div>-->
+<!--          <button class="view-photos-button">View Photos</button>-->
+
+<!--            <div class="photo-gallery" id="photo-gallery">-->
+<!--  {% for photo_file in photo_files %}-->
+<!--       <img src="{{ url_for('static', filename='images/' + newusername_newuserid + '/' + photo_file + '.jpg') }}" alt="{{ photo_file }}" class="photo-thumbnail">-->
+
+<!--                {% endfor %}-->
+<!--</div>-->
+
+<!--        </div>-->
+
+
+<!--     <script>-->
+<!--var newusername_newuserid = "{{ newusername_newuserid }}";  // Set the variable here-->
+
+<!--function updateNumPeople() {-->
+<!--    fetch(`/get_photo_files/${newusername_newuserid}`)  // Use the variable here-->
+<!--        .then(response => response.json())-->
+<!--        .then(data => {-->
+<!--            const numPeopleElement = document.getElementById('num-people');-->
+<!--            numPeopleElement.textContent = `Number of People: ${data.total_unique_faces}`;-->
+<!--        })-->
+<!--        .catch(error => {-->
+<!--            console.error('Error fetching data:', error);-->
+<!--        });-->
+<!--}-->
+
+<!--updateNumPeople();-->
+<!--setInterval(updateNumPeople, 5000);-->
+
+<!--document.addEventListener("DOMContentLoaded", function () {-->
+
+<!--    const photoGallery = document.getElementById("photo-gallery");-->
+
+<!--    const viewPhotosButton = document.querySelector(".view-photos-button");-->
+
+<!--    viewPhotosButton.addEventListener("click", function () {-->
+<!--        console.log("Fetching photo files...");-->
+<!--        fetch(`/get_photo_files/${newusername_newuserid}`)  // Use the variable here-->
+<!--            .then((response) => response.json())-->
+<!--            .then((data) => {-->
+<!--                console.log("Data received:", data);-->
+<!--                const photoFiles = data.photo_files;-->
+
+<!--                photoGallery.innerHTML = "";-->
+
+<!--                photoFiles.forEach((photoFile) => {-->
+<!--                    const img = document.createElement("img");-->
+<!--                    img.src = `static/images/${newusername_newuserid}${photoFile}.jpg`;  // Use the variable here-->
+<!--                    img.alt = photoFile;-->
+<!--                    photoGallery.appendChild(img);-->
+<!--                });-->
+<!--            })-->
+<!--            .catch((error) => {-->
+<!--                console.error("Error fetching photo files:", error);-->
+<!--            });-->
+<!--    });-->
+<!--});-->
+<!--</script>-->
+
+<!--        <script src="{{ url_for('static', filename='navin.js') }}"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Report</title>
+</head>
+<body>
+     <style>
+        /* Basic styles for the container */
+        .event-container {
+          border: 1px solid #ccc;
+          padding: 20px;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          background-color: #f9f9f9;
+          text-align: center;
+          max-width: 100%;
+        }
+
+        .event-name {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+          color: #333;
+        }
+
+        .num-people {
+          font-size: 1rem;
+          margin-bottom: 15px;
+          color: #777;
+        }
+
+        .view-photos-button {
+         padding: 8px 16px;
+         background-color: #007bff;
+         color: #fff;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         transition: background-color 0.3s ease;
+         margin: 0 auto;
+         margin-top: 15px;
+         cursor: pointer;
+         border: none;
+         border-radius: 5px;
+        }
+
+        .view-photos-button:hover {
+         background-color: #0056b3;
+        }
+
+
+        .photo-thumbnail {
+          width: 150px;
+          height: 150px;
+          margin: 5px;
+          object-fit: cover;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+        }
+     </style>
+
+
+        <div class="event-container">
+<!--          <div class="event-name">Birthday</div>-->
+<!--            <div class="num-people" id="num-people">Number of People: {{ total_unique_faces }}</div>-->
+          <button class="view-photos-button">View Photos</button>
+
+              <div class="photo-gallery" id="photo-gallery">
+
+            {% for photo_file in photo_files %}
+           <img src="{{ url_for('static', filename='images/' + photo_file + '.jpg') }}" alt="{{ photo_file }}" width="200" height="150" class="photo-thumbnail">
+<!--          <img src="{{ url_for('static', filename='images/' + photoFile + '.jpg') }}" alt="{{ photoFile }}" width="200" height="150">-->
+
+            {% endfor %}
+          </div>
+        </div>
+
+
+
+<script>
+function updateNumPeople() {
+    fetch('/get_total_faces')
+    .then(response => response.json())
+    .then(data => {
+        const numPeopleElement = document.getElementById('num-people');
+        numPeopleElement.textContent = `Number of People: ${data.total_unique_faces}`;
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
+
+updateNumPeople();
+setInterval(updateNumPeople, 5000);
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const photoGallery = document.getElementById("photo-gallery");
+
+    const viewPhotosButton = document.querySelector(".view-photos-button");
+
+    viewPhotosButton.addEventListener("click", function () {
+        console.log("Fetching photo files...");
+        fetch("/get_photo_files")
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("Data received:", data);
+                const photoFiles = data.photo_files;
+
+
+                photoGallery.innerHTML = "";
+
+
+                photoFiles.forEach((photoFile) => {
+                    const img = document.createElement("img");
+                    img.src = `static/images/${photoFile}.jpg`;
+                    img.alt = photoFile;
+                    photoGallery.appendChild(img);
+                });
+            })
+            .catch((error) => {
+                console.error("Error fetching photo files:", error);
+            });
+    });
+});
+</script>
+
+
+</body>
+</html>

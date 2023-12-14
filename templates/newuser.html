@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='newuser.css') }}">
+</head>
+<body>
+
+<section class="container">
+    <header>Registration Form</header>
+
+     <form action="/newuser" method="POST" enctype="multipart/form-data" id="add-user-form" class="form">
+
+        <div class="input-box">
+            <label>Full Name</label>
+            <input type="text" name="full_name" placeholder="Enter full name" required />
+        </div>
+
+        <div class="input-box">
+            <label>Email Address</label>
+            <input type="text" name="email" placeholder="Enter email address" required />
+        </div>
+
+        <div class="column">
+            <div class="input-box">                                                                                                                                                                    </q2>
+                <label>Phone Number</label>
+                <input type="number" name="phone" placeholder="Enter phone number" required />
+            </div>
+            <div class="input-box">
+                <label>Birth Date</label>
+                <input type="date" name="birth_date" placeholder="Enter birth date" required />
+            </div>
+        </div>
+
+        <div class="input-box">
+            <label>Department Name</label>
+            <input type="text" name="department" placeholder="Enter department name" required />
+        </div>
+
+        <div class="input-box">
+            <label>Employee ID</label>
+            <input type="text" name="id" placeholder="Enter employee ID" required />
+        </div>
+<!--         <div class="button">-->
+<!--             <button >Capture Photo</button>-->
+<!--         </div>-->
+              <div class="button">
+            <!-- Add an ID to the form for JavaScript targeting -->
+            <button type="button" id="capture-button">Capture Photo</button>
+        </div>
+<!--<div class="button">-->
+<!--    <button type="submit" id="submit-button">Submit</button>-->
+<!--</div>-->
+         </div>
+    </form>
+</section>
+<script>
+    // Function to store form data in local storage
+    function saveFormData() {
+        try {
+            const formData = {
+                newusername: document.querySelector('input[name="newusername"]').value,
+                newemail: document.querySelector('input[name="newemail"]').value,
+                newnumber: document.querySelector('input[name="newnumber"]').value,
+                newdate: document.querySelector('input[name="newdate"]').value,
+                newdepartment: document.querySelector('input[name="newdepartment"]').value,
+                newuserid: document.querySelector('input[name="newuserid"]').value
+            };
+            localStorage.setItem('formData', JSON.stringify(formData));
+        } catch (error) {
+            console.error('Error saving form data:', error);
+        }
+    }
+
+    // Function to clear form data from local storage
+    function clearFormData() {
+        try {
+            localStorage.removeItem('formData');
+        } catch (error) {
+            console.error('Error clearing form data:', error);
+        }
+    }
+
+    // Check if there is stored form data and populate the form fields
+    window.addEventListener('load', () => {
+        try {
+            const formData = localStorage.getItem('formData');
+            if (formData) {
+                const parsedData = JSON.parse(formData);
+                document.querySelector('input[name="newusername"]').value = parsedData.newusername;
+                document.querySelector('input[name="newemail"]').value = parsedData.newemail;
+                document.querySelector('input[name="newnumber"]').value = parsedData.newnumber;
+                document.querySelector('input[name="newdate"]').value = parsedData.newdate;
+                document.querySelector('input[name="newdepartment"]').value = parsedData.newdepartment;
+                document.querySelector('input[name="newuserid"]').value = parsedData.newuserid;
+            }
+        } catch (error) {
+            console.error('Error loading form data:', error);
+        }
+            });
+      document.getElementById('capture-button').addEventListener('click', function () {
+        document.getElementById('add-user-form').action = '/newuser';
+        document.getElementById('add-user-form').submit();
+    });
+
+
+<!--    document.getElementById('capture-button').addEventListener('click', function () {-->
+<!--        // Store the form data before capturing the photo-->
+<!--        saveFormData();-->
+<!--        // Submit the form to /run_main-->
+<!--        document.getElementById('add-user-form').action = '/newuser';-->
+<!--    });-->
+
+<!--&lt;!&ndash;    // Add this event listener to clear form data only when the form is submitted&ndash;&gt;-->
+<!--&lt;!&ndash;    document.getElementById('add-user-form').addEventListener('submit', function () {&ndash;&gt;-->
+<!--&lt;!&ndash;        clearFormData();&ndash;&gt;-->
+<!--&lt;!&ndash;    });&ndash;&gt;-->
+<!--        document.getElementById('add-user-form').addEventListener('submit', function () {-->
+<!--        clearFormData();-->
+<!--        // Redirect to the /page route-->
+<!--        window.location.href = '/page';-->
+<!--    });-->
+</script>
+
+</body>
+
+</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge" />-->
+<!--    <title>Users</title>-->
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='newuser.css') }}">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<section class="container">-->
+<!--    <header>Registration Form</header>-->
+
+<!--     <form action="/newuser" method="POST" enctype="multipart/form-data" id="add-user-form" class="form">-->
+
+<!--        <div class="input-box">-->
+<!--            <label>Full Name</label>-->
+<!--            <input type="text" name="newusername" placeholder="Enter full name" required />-->
+<!--        </div>-->
+
+<!--        <div class="input-box">-->
+<!--            <label>Email Address</label>-->
+<!--            <input type="text" name="newemail" placeholder="Enter email address" required />-->
+<!--        </div>-->
+
+<!--        <div class="column">-->
+<!--            <div class="input-box">                                                                                                                                                                    </q2>-->
+<!--                <label>Phone Number</label>-->
+<!--                <input type="number" name="newnumber" placeholder="Enter phone number" required />-->
+<!--            </div>-->
+<!--            <div class="input-box">-->
+<!--                <label>Birth Date</label>-->
+<!--                <input type="date" name="newdate" placeholder="Enter birth date" required />-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="input-box">-->
+<!--            <label>Department Name</label>-->
+<!--            <input type="text" name="newdepartment" placeholder="Enter department name" required />-->
+<!--        </div>-->
+
+<!--        <div class="input-box">-->
+<!--            <label>Employee ID</label>-->
+<!--            <input type="text" name="newuserid" placeholder="Enter employee ID" required />-->
+<!--        </div>-->
+<!--&lt;!&ndash;         <div class="button">&ndash;&gt;-->
+<!--&lt;!&ndash;             <button >Capture Photo</button>&ndash;&gt;-->
+<!--&lt;!&ndash;         </div>&ndash;&gt;-->
+<!--              <div class="button">-->
+<!--            &lt;!&ndash; Add an ID to the form for JavaScript targeting &ndash;&gt;-->
+<!--            <button type="button" id="capture-button">Capture Photo</button>-->
+<!--        </div>-->
+<!--<div class="button">-->
+<!--    <button type="submit" id="submit-button">Submit</button>-->
+<!--</div>-->
+<!--         </div>-->
+<!--    </form>-->
+<!--</section>-->
+<!--<script>-->
+<!--    // Function to store form data in local storage-->
+<!--    function saveFormData() {-->
+<!--        try {-->
+<!--            const formData = {-->
+<!--                newusername: document.querySelector('input[name="newusername"]').value,-->
+<!--                newemail: document.querySelector('input[name="newemail"]').value,-->
+<!--                newnumber: document.querySelector('input[name="newnumber"]').value,-->
+<!--                newdate: document.querySelector('input[name="newdate"]').value,-->
+<!--                newdepartment: document.querySelector('input[name="newdepartment"]').value,-->
+<!--                newuserid: document.querySelector('input[name="newuserid"]').value-->
+<!--            };-->
+<!--            localStorage.setItem('formData', JSON.stringify(formData));-->
+<!--        } catch (error) {-->
+<!--            console.error('Error saving form data:', error);-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Function to clear form data from local storage-->
+<!--    function clearFormData() {-->
+<!--        try {-->
+<!--            localStorage.removeItem('formData');-->
+<!--        } catch (error) {-->
+<!--            console.error('Error clearing form data:', error);-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Check if there is stored form data and populate the form fields-->
+<!--    window.addEventListener('load', () => {-->
+<!--        try {-->
+<!--            const formData = localStorage.getItem('formData');-->
+<!--            if (formData) {-->
+<!--                const parsedData = JSON.parse(formData);-->
+<!--                document.querySelector('input[name="newusername"]').value = parsedData.newusername;-->
+<!--                document.querySelector('input[name="newemail"]').value = parsedData.newemail;-->
+<!--                document.querySelector('input[name="newnumber"]').value = parsedData.newnumber;-->
+<!--                document.querySelector('input[name="newdate"]').value = parsedData.newdate;-->
+<!--                document.querySelector('input[name="newdepartment"]').value = parsedData.newdepartment;-->
+<!--                document.querySelector('input[name="newuserid"]').value = parsedData.newuserid;-->
+<!--            }-->
+<!--        } catch (error) {-->
+<!--            console.error('Error loading form data:', error);-->
+<!--        }-->
+<!--            });-->
+<!--      document.getElementById('capture-button').addEventListener('click', function () {-->
+<!--        document.getElementById('add-user-form').action = '/run_main';-->
+<!--        document.getElementById('add-user-form').submit();-->
+<!--    });-->
+
+
+<!--    document.getElementById('capture-button').addEventListener('click', function () {-->
+<!--        // Store the form data before capturing the photo-->
+<!--        saveFormData();-->
+<!--        // Submit the form to /run_main-->
+<!--        document.getElementById('add-user-form').action = '/run_main';-->
+<!--    });-->
+
+<!--    // Add this event listener to clear form data only when the form is submitted-->
+<!--    document.getElementById('add-user-form').addEventListener('submit', function () {-->
+<!--        clearFormData();-->
+<!--    });-->
+<!--</script>-->
+
+<!--</body>-->
+
+<!--</html>-->
+
+
+

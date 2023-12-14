@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+</head>
+<body>
+
+    <h1>User Information</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email Address</th>
+                <th>Phone Number</th>
+                <th>Birth Date</th>
+                <th>Department Name</th>
+                <th>Employee ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_list %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>{{ user[5] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
